@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zoul Voice AI</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-container">
+        <canvas id="particleCanvas"></canvas>
+    </div>
+
+    <!-- API Key Modal -->
+    <div id="apiKeyModal" class="modal active">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Welcome to Zoul</h2>
+                <p>Enter your OpenAI API Key to begin</p>
+            </div>
+            <div class="modal-body">
+                <input 
+                    type="password" 
+                    id="apiKeyInput" 
+                    placeholder="sk-..."
+                    autocomplete="off"
+                />
+                <div class="model-selector">
+                    <label for="modelSelect">Model:</label>
+                    <select id="modelSelect">
+                        <option value="gpt-4-turbo">gpt-4-turbo</option>
+                        <option value="gpt-4">gpt-4</option>
+                        <option value="gpt-3.5-turbo">gpt-3.5-turbo</option>
+                    </select>
+                </div>
+                <button id="saveApiKey" class="save-btn">Initialize Zoul</button>
+                <p class="warning">⚠️ Key stored locally in your browser only</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Interface -->
+    <div class="container">
+        <!-- Status Indicator -->
+        <div class="status-bar">
+            <span id="statusText">Idle</span>
+            <span class="status-dot"></span>
+        </div>
+
+        <!-- Central Orb -->
+        <div class="orb-container">
+            <div id="orb" class="orb">
+                <div class="orb-core"></div>
+                <div class="ring ring-1"></div>
+                <div class="ring ring-2"></div>
+                <div class="ring ring-3"></div>
+                <svg class="waveform" viewBox="0 0 200 100">
+                    <path id="wave1" d="M0,50 Q50,50 100,50 T200,50" />
+                    <path id="wave2" d="M0,50 Q50,50 100,50 T200,50" />
+                    <path id="wave3" d="M0,50 Q50,50 100,50 T200,50" />
+                </svg>
+            </div>
+            <div class="orb-label">ZOUL</div>
+            
+            <!-- Real-time Transcript -->
+            <div id="transcriptDisplay" class="transcript-display"></div>
+        </div>
+
+        <!-- Microphone Button -->
+        <button id="micButton" class="mic-button">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                <line x1="12" y1="19" x2="12" y2="23"></line>
+                <line x1="8" y1="23" x2="16" y2="23"></line>
+            </svg>
+        </button>
+
+        <!-- Chat History -->
+        <div id="chatContainer" class="chat-container">
+            <div id="chatHistory" class="chat-history"></div>
+        </div>
+
+        <!-- Settings Button -->
+        <button id="settingsButton" class="settings-button">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M12 1v6m0 6v6m5.2-13.2l-4.2 4.2m-6 6l-4.2 4.2m13.2 0l-4.2-4.2m-6-6L1.8 5.8"></path>
+            </svg>
+        </button>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
